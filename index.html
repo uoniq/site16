@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style type="text/css">
+		body{
+			background-image: url(images/bg.jpg);
+			background-size: 100%;
+			margin: 0;
+			color: white;
+		}
+		.enemy{
+
+			height: 200px;
+			width: 500px;
+			margin-left: 35%;
+			margin-top: 200px;
+		}
+		.player{
+			height: 200px;
+			width: 500px;
+			margin-left: 35%;
+			margin-top: 35px;
+		}
+		.btnE{
+			height: 200px;
+			width: 100px;
+			background-color: red;
+		}
+		.btnP{
+			height: 200px;
+			width: 100px;
+			background-color: green;
+		}
+	</style>
+</head>
+<body>
+	<p class="infoe"></p>
+	<p class="infop"></p>
+	<button class="btnP">call player cards</button>
+	<button class="btnE">call enemy player cards</button>
+	<div class="enemy" id="enemy">
+		
+	</div>
+	<div class="player" id="player">
+		
+	</div>
+	<script type="text/javascript">
+		let infoboxe = document.querySelector(".infoe")
+		let infoboxp = document.querySelector(".infop")
+		let btnE = document.querySelector(".btnE")
+		let btnP = document.querySelector(".btnP")
+		let getRandom = function(){
+			let rand = Math.random()*9
+			let round = Math.round(rand)
+			round = round + 1
+			return round
+		}
+		let imgE = [
+		{
+			hp:1,
+			damage:1,
+			link: "images/1.png"
+		},
+		{
+			hp: 2,
+			damage: 4,
+			link: "images/2.png"
+		},
+		{
+			hp: 3,
+			damage:4,
+			link: "images/3.png"
+		},
+		{
+			hp: 4,
+			damage: 1,
+			link: "images/4.png"
+		},
+		{
+			hp: 5,
+			damage: 7,
+			link: "images/5.png"
+		},
+		{
+			hp: 6,
+			damage: 5,
+			link: "images/6.png"
+		},
+		{
+			hp: 7,
+			damage: 5,
+			link: "images/7.png"
+		},
+		{
+			hp: 8,
+			damage: 7,
+			link: "images/8.png"
+		},
+		{
+			hp: 9,
+			damage: 4,
+			link: "images/9.png"
+		},
+		{
+			hp: 4,
+			damage: 4,
+			link: "images/10.png"
+		}
+		]
+		let imgP = [
+		{
+			hp:1,
+			damage:1,
+			link: "images/1.png"
+		},
+		{
+			hp: 2,
+			damage: 4,
+			link: "images/2.png"
+		},
+		{
+			hp: 3,
+			damage:4,
+			link: "images/3.png"
+		},
+		{
+			hp: 4,
+			damage: 1,
+			link: "images/4.png"
+		},
+		{
+			hp: 5,
+			damage: 7,
+			link: "images/5.png"
+		},
+		{
+			hp: 6,
+			damage: 5,
+			link: "images/6.png"
+		},
+		{
+			hp: 7,
+			damage: 5,
+			link: "images/7.png"
+		},
+		{
+			hp: 8,
+			damage: 7,
+			link: "images/8.png"
+		},
+		{
+			hp: 9,
+			damage: 4,
+			link: "images/9.png"
+		},
+		{
+			hp: 4,
+			damage: 4,
+			link: "images/10.png"
+		}
+		]
+		let hpE = 0
+		let damageE = 0
+		let hpP = 0
+		let damageP = 0
+		let addEnemy = function(arg){
+				for(i = 0; i < arg; i = i + 1){
+				let elem = document.createElement("img")
+				enemy.appendChild(elem)
+				let imgrand = getRandom()
+				elem.src = imgE[imgrand].link
+				elem.style.height = "100%"
+				hpE = hpE + imgE[imgrand].hp
+				damageE = damageE + imgE[imgrand].damage
+			}
+		}
+		let addPlayer = function(arg){
+				for(i = 0; i < arg; i = i + 1){
+				let elem = document.createElement("img")
+				player.appendChild(elem)
+				let imgrand = getRandom()
+				elem.src = imgP[imgrand].link
+				elem.style.height = "100%"
+				hpP = hpP + imgP[imgrand].hp
+				damageP = damageP + imgP[imgrand].damage
+			}
+		}
+		let hpce = 0
+		let hpcp = 0
+		let start = function(){
+			hpce = hpE - damageP
+			hpcp = hpP - damageE
+			infoboxp.innerHTML = "Player hp:" + hpcp
+			infoboxe.innerHTML = "Enemy hp:" + hpce
+			if(hpce > hpcp){
+				alert('u lose')
+			}
+			else if(hpce < hpcp){
+				alet('u won')
+			}
+			else{
+				alert('round draw')
+			}
+		}
+		btnP.onclick = function(){
+			addEnemy(4)
+		}
+		btnE.onclick = function(){
+			addPlayer(4)
+		}
+	</script>
+</body>
+</html>
